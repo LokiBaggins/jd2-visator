@@ -1,18 +1,19 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Server version:               5.5.40 - MySQL Community Server (GPL)
--- Server OS:                    Win64
--- HeidiSQL Version:             9.3.0.4984
+-- Server version:               5.7.10 - MySQL Community Server (GPL)
+-- Server OS:                    Win32
+-- HeidiSQL Version:             9.3.0.5040
 -- --------------------------------------------------------
 
 /* !40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/* !40101 SET NAMES utf8mb4 */;
+/* !40101 SET NAMES utf8 */;
+/* !50503 SET NAMES utf8mb4 */;
 /* !40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /* !40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 -- Dumping database structure for festival_team_db
 DROP DATABASE IF EXISTS `festival_team_db`;
-CREATE DATABASE IF NOT EXISTS `festival_team_db` /* !40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE IF NOT EXISTS `festival_team_db` /* !40100 DEFAULT CHARACTER SET latin1 */;
 USE `festival_team_db`;
 
 
@@ -21,24 +22,25 @@ CREATE TABLE IF NOT EXISTS `addresses` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `country` varchar(50) DEFAULT NULL,
   `city` varchar(50) DEFAULT NULL,
-  `street` varchar(50) DEFAULT NULL,
+  `street_name` varchar(50) DEFAULT NULL,
   `building` varchar(4) DEFAULT NULL,
   `block` varchar(3) DEFAULT NULL,
   `flat` varchar(5) DEFAULT NULL,
   `zip_code` varchar(10) DEFAULT NULL,
   `city_phone` varchar(10) DEFAULT NULL,
-  `email` varchar(50) DEFAULT NULL,
+#   TODO: вынести тип улиц в отдельный справочник
+  `fk_street_type` int(10) DEFAULT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
--- Dumping data for table festival_team_db.addresses: ~1 rows (approximately)
+-- Dumping data for table festival_team_db.addresses: ~4 rows (approximately)
 DELETE FROM `addresses`;
 /* !40000 ALTER TABLE `addresses` DISABLE KEYS */;
-INSERT INTO `addresses` (`ID`, `country`, `city`, `street`, `building`, `block`, `flat`, `zip_code`, `city_phone`, `email`) VALUES
-	(1, 'Belarus', 'City1', 'Street1', '11', NULL, '11', '220011', '1234567', 'some2@mail.com'),
-	(2, 'Belarus', 'City2', 'Street2', '22', '2', '22', '220022', '2345678', 'some2@mail.com'),
-	(3, 'Belarus', 'City3', 'Street3', '33', '3', '33', '220033', '3456789', 'some3@mail.com'),
-	(4, 'Belarus', 'City4', 'Street4', '44', '4', '44', '220044', '4567890', 'some4@mail.com');
+INSERT INTO `addresses` (`ID`, `country`, `city`, `street_name`, `building`, `block`, `flat`, `zip_code`, `city_phone`, `fk_street_type`) VALUES
+	(1, 'Belarus', 'City1', 'Street1', '11', NULL, '11', '220011', '1234567', NULL),
+	(2, 'Belarus', 'City2', 'Street2', '22', '2', '22', '220022', '2345678', NULL),
+	(3, 'Belarus', 'City3', 'Street3', '33', '3', '33', '220033', '3456789', NULL),
+	(4, 'Belarus', 'City4', 'Street4', '44', '4', '44', '220044', '4567890', NULL);
 /* !40000 ALTER TABLE `addresses` ENABLE KEYS */;
 
 
@@ -46,6 +48,8 @@ INSERT INTO `addresses` (`ID`, `country`, `city`, `street`, `building`, `block`,
 CREATE TABLE IF NOT EXISTS `employers` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
+  `phone` varchar(50) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
   `fk_address_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
@@ -53,10 +57,10 @@ CREATE TABLE IF NOT EXISTS `employers` (
 -- Dumping data for table festival_team_db.employers: ~3 rows (approximately)
 DELETE FROM `employers`;
 /* !40000 ALTER TABLE `employers` DISABLE KEYS */;
-INSERT INTO `employers` (`ID`, `name`, `fk_address_id`) VALUES
-	(1, 'Some Work_1', 1),
-	(2, 'Some University_1', 2),
-	(3, 'Some Work_2', 3);
+INSERT INTO `employers` (`ID`, `name`, `phone`, `email`, `fk_address_id`) VALUES
+	(1, 'Some Work_1', '+375171111111', 'employer1@some.com', 1),
+	(2, 'Some University_1', '+375172222222', 'employer2@some.com', 2),
+	(3, 'Some Work_2', '+375173333333', 'employer3@some.com', 3);
 /* !40000 ALTER TABLE `employers` ENABLE KEYS */;
 
 
@@ -133,10 +137,10 @@ CREATE TABLE IF NOT EXISTS `teammates` (
   CONSTRAINT `FK_passport_id` FOREIGN KEY (`fk_passport_id`) REFERENCES `passports` (`ID`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Dumping data for table festival_team_db.teammates: ~1 rows (approximately)
+-- Dumping data for table festival_team_db.teammates: ~2 rows (approximately)
 DELETE FROM `teammates`;
 /* !40000 ALTER TABLE `teammates` DISABLE KEYS */;
-INSERT INTO `teammates` (`ID`, `hist_name`, `f_name_cyr`, `m_name_cyr`, `l_name_cyr`, `birth_date`, `sex`, `vk_profile`, `contact_phone`, `fk_passport_id`, `fk_occupation_id`, `fk_current_address_id`) VALUES
+INSERT INTO `teammates` (`ID`, `nick_name`, `f_name_cyr`, `m_name_cyr`, `l_name_cyr`, `birth_date`, `sex`, `vk_profile`, `contact_phone`, `fk_passport_id`, `fk_occupation_id`, `fk_current_address_id`) VALUES
 	(1, 'TeamMate1', 'Имя1', 'Отчество1', 'Фамилия1', '2011-01-11', 0, 'http://vk.com/loki_baggins', '+375291234567', 1, 1, 1),
 	(2, 'TeamMate2', 'Имя2', 'Отчество2', 'Фамилия2', '2022-02-22', 1, 'http://vk.com/tm2', '+375292345678', 2, 2, 3);
 /* !40000 ALTER TABLE `teammates` ENABLE KEYS */;
