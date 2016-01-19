@@ -24,6 +24,22 @@
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-servlet-api</artifactId>
+      <version>8.0.30</version>
+    </dependency>
+    <dependency>
+      <!--<groupId>${parentGroupId}</groupId>-->
+      <groupId>jd2.baggins</groupId>
+      <artifactId>moduleDao</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <!--<dependency>-->
+    <!--<groupId>${group}</groupId>-->
+    <!--<artifactId>moduleDB</artifactId>-->
+    <!--<version>1.0-SNAPSHOT</version>-->
+    <!--</dependency>-->
   </dependencies>
 
   <build>

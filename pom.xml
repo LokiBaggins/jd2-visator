@@ -8,7 +8,6 @@
     <packaging>pom</packaging>
 
     <name>jd2-visator</name>
-    <url>http://maven.apache.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -27,10 +26,10 @@
 
     <modules>
         <module>moduleDao</module>
+        <module>moduleDB</module>
         <module>moduleLogic</module>
         <module>moduleFront</module>
-        <module>moduleDB</module>
-  </modules>
+   </modules>
 
     <build>
         <pluginManagement>
