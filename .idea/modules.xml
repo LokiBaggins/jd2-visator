@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/jd2-visator.iml" filepath="$PROJECT_DIR$/jd2-visator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moduleDB/moduleDB.iml" filepath="$PROJECT_DIR$/moduleDB/moduleDB.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moduleDao/moduleDao.iml" filepath="$PROJECT_DIR$/moduleDao/moduleDao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moduleFront/moduleFront.iml" filepath="$PROJECT_DIR$/moduleFront/moduleFront.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moduleLogic/moduleLogic.iml" filepath="$PROJECT_DIR$/moduleLogic/moduleLogic.iml" />
+    </modules>
+  </component>
+</project>

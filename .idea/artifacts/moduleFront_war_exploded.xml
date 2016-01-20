@@ -1,0 +1,30 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="moduleFront:war exploded">
+    <output-path>$PROJECT_DIR$/moduleFront/target/moduleFront</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="moduleFront" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: jstl:jstl:1.2" />
+          <element id="archive" name="moduleDao-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="moduleDao" />
+          </element>
+          <element id="archive" name="moduleDB-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="moduleDB" />
+          </element>
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.38" />
+          <element id="archive" name="moduleLogic-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="moduleLogic" />
+          </element>
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-servlet-api:8.0.30" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/moduleFront/target/moduleFront/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="moduleFront/web/Web" />
+    </root>
+  </artifact>
+</component>

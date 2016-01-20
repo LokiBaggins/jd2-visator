@@ -20,7 +20,7 @@ public class ConnectionPool {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/training_db", "root", "123456");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/training_db", "root", "");
 //            Context context = new InitialContext();
 //            Context root = (Context) context.lookup("java:comp/env");
 //            DataSource dataSource = (DataSource) root.lookup("jdbc/FestTeam_DB");
