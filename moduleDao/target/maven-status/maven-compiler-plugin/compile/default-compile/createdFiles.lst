@@ -1,7 +1,0 @@
-beans\AddressBase.class
-jd2\baggins\Dao.class
-beans\Crud.class
-beans\Teammate.class
-beans\TeammateBase.class
-beans\Demonstrator.class
-jd2\baggins\TeammateDao.class
