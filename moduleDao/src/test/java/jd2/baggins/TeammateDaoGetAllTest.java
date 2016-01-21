@@ -18,11 +18,13 @@ public class TeammateDaoGetAllTest extends Assert {
         int result = -1;
         PreparedStatement selData = null;
         ResultSet rs = null;
-        String selDataStr = "SELECT count(*) as counter FROM teammates;";
-
+        String selDataStr = "SELECT count(*) as 'counter' FROM teammates;";
         try {
+            selData = conn.prepareStatement(selDataStr);
             rs = selData.executeQuery();
-            result = rs.getInt("counter");
+            if (rs.next()) {
+                result = rs.getInt("counter");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
