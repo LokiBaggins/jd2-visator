@@ -24,13 +24,13 @@ public class TeammateDao implements Dao<Teammate> {
         Teammate tm;
         PreparedStatement selData;
         ResultSet rs;
-        String selDataStr = "SELECT * FROM teammates;";
+        String selDataStr = "SELECT * FROM t_teammates;";
         try (Connection conn = ConnectionPool.getInstance().getConnection()) {
             selData = conn.prepareStatement(selDataStr);
             rs = selData.executeQuery();
             while (rs.next()) {
                 tm = new Teammate();
-                tm.setNickName(rs.getString("nick_name"));
+                tm.setNickName(rs.getString("c_nick_name"));
                 teammates.add(tm);
             }
         } catch (SQLException e) {
