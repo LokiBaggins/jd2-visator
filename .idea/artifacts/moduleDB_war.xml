@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="moduleDB:war">
+    <output-path>$PROJECT_DIR$/moduleDB/target</output-path>
+    <root id="archive" name="moduleDB.war">
+      <element id="artifact" artifact-name="moduleDB:war exploded" />
+    </root>
+  </artifact>
+</component>
