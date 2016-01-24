@@ -1,6 +1,6 @@
-package jd2.baggins;
+package jd2.baggins.dao;
 
-import beans.Teammate;
+import jd2.baggins.beans.Teammate;
 import dbConnection.ConnectionPool;
 
 import java.sql.Connection;

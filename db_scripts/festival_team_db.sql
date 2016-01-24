@@ -12,9 +12,9 @@
 /* !40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 -- Dumping database structure for festival_team_db
-DROP DATABASE IF EXISTS `c_festival_team_db`;
-CREATE DATABASE IF NOT EXISTS `c_festival_team_db` /* !40100 DEFAULT CHARACTER SET latin1 */;
-USE `c_festival_team_db`;
+DROP DATABASE IF EXISTS `festival_team_db`;
+CREATE DATABASE IF NOT EXISTS `festival_team_db` /* !40100 DEFAULT CHARACTER SET latin1 */;
+USE `festival_team_db`;
 
 
 -- Dumping structure for table festival_team_db.t_addresses

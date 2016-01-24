@@ -1,7 +1,7 @@
 package jd2.baggins.services;
 
-import beans.Teammate;
-import jd2.baggins.TeammateDao;
+import jd2.baggins.beans.Teammate;
+import jd2.baggins.dao.TeammateDao;
 
 import java.util.List;
 
