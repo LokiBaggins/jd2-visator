@@ -2,6 +2,7 @@ package jd2.baggins.dao;
 
 import jd2.baggins.beans.Teammate;
 import dbConnection.ConnectionPool;
+import jd2.baggins.exceptions.DaoException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,12 +15,12 @@ public class TeammateDao implements Dao<Teammate> {
 
 
     @Override
-    public boolean add(Teammate teammate) {
+    public boolean add(Teammate teammate) throws DaoException {
        return false;
     }
 
     @Override
-    public List<Teammate> getAll() {
+    public List<Teammate> getAll() throws DaoException {
         List<Teammate> teammates = new ArrayList<>();
         Teammate tm;
         PreparedStatement selData;
@@ -41,17 +42,17 @@ public class TeammateDao implements Dao<Teammate> {
     }
 
     @Override
-    public Teammate getById(int id) {
+    public Teammate getById(int id) throws DaoException {
         return null;
     }
 
     @Override
-    public boolean update(Teammate teammate) {
+    public boolean update(Teammate teammate) throws DaoException {
         return false;
     }
 
     @Override
-    public boolean delete(Teammate teammate) {
+    public boolean delete(Teammate teammate) throws DaoException {
         return false;
     }
 }

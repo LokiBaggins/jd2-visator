@@ -6,7 +6,7 @@
     <a href="samplecontroller.do">Request to Server</a>
     <br/>
     <ul>
-        <c:forEach items="teamList" var="tm" varStatus="loop">
+        <c:forEach items="teammate" var="tm" varStatus="loop">
             <li>${tm.nickName}</li>
         </c:forEach>
     </ul>

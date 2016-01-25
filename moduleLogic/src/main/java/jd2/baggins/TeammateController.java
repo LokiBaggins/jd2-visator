@@ -16,8 +16,8 @@ public class TeammateController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("controller_message", "Message from controller!");
-        req.setAttribute("teamList", new TeammateService().getAll());
-        req.getRequestDispatcher("/").forward(req, resp);
+        req.setAttribute("teammate", new TeammateService().getById(1));
+        req.getRequestDispatcher("main.jsp").forward(req, resp);
     }
 
     @Override
