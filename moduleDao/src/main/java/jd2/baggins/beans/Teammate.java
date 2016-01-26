@@ -1,8 +1,11 @@
 package jd2.baggins.beans;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Teammate {
+public class Teammate implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     int id;
     String nickName;
     String firstNameCyr;
