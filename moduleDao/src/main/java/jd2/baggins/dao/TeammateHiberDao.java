@@ -33,7 +33,6 @@ public class TeammateHiberDao implements Dao<Teammate> {
             query.setInteger("id", id);
             tm = (Teammate) query.uniqueResult();
             session.flush();
-            session.close();
             return tm;
         } catch (HibernateException e) {
             if(transaction != null) {
