@@ -1,8 +1,8 @@
-package jd2.baggins;
+package jd2.baggins.services;
 
 import java.util.List;
 
-public interface Dao<T> {
+public interface BasicService<T> {
     boolean add(T t);
 
     List<T> getAll();

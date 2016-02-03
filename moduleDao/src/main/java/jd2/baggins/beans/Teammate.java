@@ -1,4 +1,6 @@
-package beans;
+package jd2.baggins.beans;
+
+import java.util.Date;
 
 public class Teammate {
     int id;
@@ -6,13 +8,13 @@ public class Teammate {
     String firstNameCyr;
     String midNameCyr;
     String lastNameCyr;
-    String birthDate; // don't see no need for using Date now. May be later
-    String sex;
+    Date birthDate;
+    int sex;
     String vkProfile;
     String contactPhone;
-//    int passportId;
-//    int occupationId;
-//    int currentAddressId;
+    int passportId;
+    int occupationId;
+    int currentAddressId;
 
     public int getId() {
         return id;
@@ -54,19 +56,19 @@ public class Teammate {
         this.lastNameCyr = lastNameCyr;
     }
 
-    public String getBirthDate() {
+    public Date getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(String birthDate) {
+    public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 
-    public String getSex() {
+    public int getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(int sex) {
         this.sex = sex;
     }
 
@@ -84,6 +86,30 @@ public class Teammate {
 
     public void setContactPhone(String contactPhone) {
         this.contactPhone = contactPhone;
+    }
+
+    public int getPassportId() {
+        return passportId;
+    }
+
+    public void setPassportId(int passportId) {
+        this.passportId = passportId;
+    }
+
+    public int getOccupationId() {
+        return occupationId;
+    }
+
+    public void setOccupationId(int occupationId) {
+        this.occupationId = occupationId;
+    }
+
+    public int getCurrentAddressId() {
+        return currentAddressId;
+    }
+
+    public void setCurrentAddressId(int currentAddressId) {
+        this.currentAddressId = currentAddressId;
     }
 
     @Override

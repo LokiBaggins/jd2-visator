@@ -1,14 +1,13 @@
 package jd2.baggins;
 
 
-import beans.Teammate;
+import jd2.baggins.beans.Teammate;
 import dbConnection.ConnectionPool;
-import jd2.baggins.TeammateDao;
+import jd2.baggins.dao.TeammateDao;
 import junit.framework.Assert;
 import org.junit.Test;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class TeammateDaoGetAllTest extends Assert {
@@ -18,7 +17,7 @@ public class TeammateDaoGetAllTest extends Assert {
         int result = -1;
         PreparedStatement selData = null;
         ResultSet rs = null;
-        String selDataStr = "SELECT count(*) as 'counter' FROM teammates;";
+        String selDataStr = "SELECT count(*) as 'counter' FROM t_teammates;";
         try {
             selData = conn.prepareStatement(selDataStr);
             rs = selData.executeQuery();
