@@ -15,8 +15,8 @@ public class TeammateHiberDao implements Dao<Teammate> {
         try (Session session = HibernateUtil.getSessionFactory().openSession() ) {
             session.beginTransaction();
             session.save(teammate);
+            session.flush();
             session.getTransaction().commit();
-//            session.flush();
         } catch (HibernateException e) {
             throw new DaoException(e);
         }
@@ -32,6 +32,7 @@ public class TeammateHiberDao implements Dao<Teammate> {
             tmList = query.list();
             session.flush();
         } catch (HibernateException e) {
+            // TODO: log error
             throw new DaoException(e);
         }
 
@@ -41,8 +42,7 @@ public class TeammateHiberDao implements Dao<Teammate> {
     @Override
     public Teammate getById(int id) throws DaoException {
         Teammate tm = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession();) {
-
+        try (Session session = HibernateUtil.getSessionFactory().openSession() ) {
             String queryString = "FROM Teammate WHERE id = :id";
             Query query = session.createQuery(queryString);
 //        Query query = session.createSQLQuery("Select * from t_teammates where c_id = :id");
@@ -50,6 +50,7 @@ public class TeammateHiberDao implements Dao<Teammate> {
             tm = (Teammate) query.uniqueResult();
             session.flush();
         } catch (HibernateException e) {
+            // TODO: log error
             throw new DaoException(e);
         }
 
@@ -57,12 +58,28 @@ public class TeammateHiberDao implements Dao<Teammate> {
     }
 
     @Override
-    public boolean update(Teammate teammate) throws DaoException {
-        return false;
+    public void update(Teammate teammate) throws DaoException {
+        try (Session session = HibernateUtil.getSessionFactory().openSession() ) {
+            session.beginTransaction();
+            session.update(teammate);
+            session.flush();
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+//            TODO: log error
+            throw new DaoException(e);
+        }
     }
 
     @Override
-    public boolean delete(Teammate teammate) throws DaoException {
-        return false;
+    public void delete(Teammate teammate) throws DaoException {
+        try (Session session = HibernateUtil.getSessionFactory().openSession() ) {
+            session.beginTransaction();
+            session.delete(teammate);
+            session.flush();
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+//            TODO: log error
+            throw new DaoException(e);
+        }
     }
 }

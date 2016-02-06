@@ -14,7 +14,7 @@ public interface Dao<T> {
 
     T getById(int id) throws DaoException;
 
-    boolean update(T t) throws DaoException;
+    void update(T t) throws DaoException;
 
-    boolean delete(T t) throws DaoException;
+    void delete(T t) throws DaoException;
 }

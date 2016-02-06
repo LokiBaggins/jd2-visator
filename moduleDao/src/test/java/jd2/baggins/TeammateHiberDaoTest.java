@@ -7,12 +7,27 @@ import junit.framework.Assert;
 import org.junit.Test;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TeammateHiberDaoTest extends Assert {
-    private Teammate tm = new Teammate();
     private String tNickName = "test_nickName";
     private String tNickName_up = "test_nickNameUpdated";
+
+    private Connection getConnection() {
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/festival_team_db", "root", "123456");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return conn;
+    }
+
+//    private List<Integer> getIds
 
 //    @BeforeClass
 //    public static void resetTestDB() {
@@ -39,15 +54,14 @@ public class TeammateHiberDaoTest extends Assert {
         ResultSet rs = null;
         String selDataStr = "SELECT count(*) as 'counter' FROM t_teammates;";
 
+        Connection conn = getConnection();
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/festival_team_db", "root", "123456");
             selData = conn.prepareStatement(selDataStr);
             rs = selData.executeQuery();
             if (rs.next()) {
                 rowsCount = rs.getInt("counter");
             }
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -57,13 +71,20 @@ public class TeammateHiberDaoTest extends Assert {
 
     @Test
     public void testGetById() {
-        int id = 1;
-        Teammate tm = new TeammateHiberDao().getById(id);
+        int id = 0;
+        Teammate tm = new Teammate();
+        TeammateHiberDao dao = new TeammateHiberDao();
+        List<Teammate> tmList = dao.getAll();
+        if (tmList.size() > 0) {
+            id = tmList.get(0).getId();
+        }
+        tm = new TeammateHiberDao().getById(id);
         assertEquals(tm.getId(), id);
     }
 
     @Test
     public void testAdd() {
+        Teammate tm = new Teammate();
         tm.setNickName(tNickName);
         new TeammateHiberDao().add(tm);
 
@@ -73,5 +94,31 @@ public class TeammateHiberDaoTest extends Assert {
             if (t.getNickName().equals(tNickName)) { contains = true; }
         }
         assertTrue("Table contains added teammmate", contains);
+    }
+
+    @Test
+    public void testUpdate() {
+        Teammate tm = new Teammate();
+        TeammateHiberDao dao = new TeammateHiberDao();
+        List<Teammate> tmList = dao.getAll();
+        if (tmList.size() > 0) {
+            tm = tmList.get(0);
+        }
+        tm.setNickName(tNickName_up);
+        dao.update(tm);
+
+        tm = dao.getById(tm.getId());
+        assertEquals(tNickName_up, tm.getNickName());
+    }
+
+    @Test
+    public void testDelete() {
+        TeammateHiberDao dao = new TeammateHiberDao();
+        List<Teammate> tmListBefore = dao.getAll();
+        if (tmListBefore.size() > 0) {
+            dao.delete(tmListBefore.get(0));
+        }
+        List<Teammate> tmListAfter = dao.getAll();
+        assertEquals(tmListBefore.size() - 1, tmListAfter.size() );
     }
 }

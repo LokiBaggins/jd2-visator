@@ -46,12 +46,10 @@ public class TeammateDao implements Dao<Teammate> {
     }
 
     @Override
-    public boolean update(Teammate teammate) throws DaoException {
-        return false;
+    public void update(Teammate teammate) throws DaoException {
     }
 
     @Override
-    public boolean delete(Teammate teammate) throws DaoException {
-        return false;
+    public void delete(Teammate teammate) throws DaoException {
     }
 }
