@@ -10,6 +10,8 @@
             <li>${tm.nickName}</li>
         </c:forEach>
     </ul>
-    <p>And the first one is ${teammate.nickName}</p>
+    <%--<p>And the first one is ${teammate.nickName} with sex: ${teammate.sex}</p>--%>
+    <%--<p>And the first one is ${teammate.nickName}</p>--%>
+    <p>And the first one is ${teammate} </p>
 </body>
 </html>

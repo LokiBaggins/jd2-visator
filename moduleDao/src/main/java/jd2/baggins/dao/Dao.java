@@ -8,7 +8,7 @@ public interface Dao<T> {
     //TODO: add custom exceptions
     //TODO: add exception handling
 
-    boolean add(T t) throws DaoException;
+    void add(T t) throws DaoException;
 
     List<T> getAll() throws DaoException;
 

@@ -1,11 +1,7 @@
-package jd2.baggins.hibernate;
+package jd2.baggins.utils;
 
-import jd2.baggins.beans.Teammate;
 import jd2.baggins.dao.TeammateHiberDao;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 

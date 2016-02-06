@@ -4,15 +4,11 @@
 
 <hibernate-configuration>
     <session-factory>
-        <property name="hibernate.dialect">
-            org.hibernate.dialect.MySQLDialect
-        </property>
-        <property name="hibernate.connection.driver_class">
-            com.mysql.jdbc.Driver
-        </property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 
         <!-- JDBC connection pool (use the built-in) -->
-        <property name="connection.pool_size">1</property>
+        <property name="connection.pool_size">5</property>
 
         <!-- Assume test is the database name -->
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/festival_team_db</property>
@@ -23,7 +19,12 @@
         <property name="show_sql">true</property>
 
         <!-- List of XML mapping files -->
-        <mapping resource="Teammate.hbm.xml"/>
+        <!--<mapping resource="Teammate.hbm.xml"/>-->
+        <!--<mapping resource="Sex.hbm.xml"/>-->
+
+        <mapping class="jd2.baggins.beans.Passport" />
+        <mapping class="jd2.baggins.beans.Teammate" />
+        <mapping class="jd2.baggins.beans.Sex" />
 
     </session-factory>
 </hibernate-configuration>

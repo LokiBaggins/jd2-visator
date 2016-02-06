@@ -15,8 +15,7 @@ public class TeammateDao implements Dao<Teammate> {
 
 
     @Override
-    public boolean add(Teammate teammate) throws DaoException {
-       return false;
+    public void add(Teammate teammate) throws DaoException {
     }
 
     @Override

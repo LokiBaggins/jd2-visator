@@ -2,46 +2,58 @@ package jd2.baggins.dao;
 
 import jd2.baggins.beans.Teammate;
 import jd2.baggins.exceptions.DaoException;
-import jd2.baggins.hibernate.HibernateUtil;
+import jd2.baggins.utils.HibernateUtil;
 import org.hibernate.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TeammateHiberDao implements Dao<Teammate> {
 
     @Override
-    public boolean add(Teammate teammate) throws DaoException {
-        return false;
+    public void add(Teammate teammate) throws DaoException {
+        try (Session session = HibernateUtil.getSessionFactory().openSession() ) {
+            session.beginTransaction();
+            session.save(teammate);
+            session.getTransaction().commit();
+//            session.flush();
+        } catch (HibernateException e) {
+            throw new DaoException(e);
+        }
     }
 
     @Override
     public List<Teammate> getAll() throws DaoException {
-        return null;
+        List<Teammate> tmList = new ArrayList<>();
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession();) {
+            String queryString = "FROM Teammate";
+            Query query = session.createQuery(queryString);
+            tmList = query.list();
+            session.flush();
+        } catch (HibernateException e) {
+            throw new DaoException(e);
+        }
+
+        return tmList;
     }
 
     @Override
     public Teammate getById(int id) throws DaoException {
         Teammate tm = null;
-        Transaction transaction = null;
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        try (Session session = HibernateUtil.getSessionFactory().openSession();) {
 
-        try {
-            transaction = session.beginTransaction();
             String queryString = "FROM Teammate WHERE id = :id";
             Query query = session.createQuery(queryString);
 //        Query query = session.createSQLQuery("Select * from t_teammates where c_id = :id");
             query.setInteger("id", id);
             tm = (Teammate) query.uniqueResult();
             session.flush();
-            return tm;
         } catch (HibernateException e) {
-            if(transaction != null) {
-                transaction.rollback();
-            }
             throw new DaoException(e);
-        } finally {
-            session.close();
         }
+
+        return tm;
     }
 
     @Override
