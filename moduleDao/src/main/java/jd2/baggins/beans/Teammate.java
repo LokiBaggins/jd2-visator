@@ -168,8 +168,8 @@ public class Teammate implements Serializable {
                 ", midNameCyr='" + midNameCyr + "\'\n" +
                 ", lastNameCyr='" + lastNameCyr + "\'\n" +
                 ", birthDate='" + birthDate + "\'\n" +
-                ", Passoprt='" + passport.toString() + "\'\n" +
-                ", sex='" + sex.getSexName() + "\'\n" +
+                ", Passoprt='" + ((passport != null) ? passport.toString() : "") + "\'\n" +
+                ", sex='" + ((sex != null) ? sex.getSexName() : "") + "\'\n" +
 //                ", sexN='" + sexId + "\'\n" +
                 ", vkProfile='" + vkProfile + "\'\n" +
                 ", contactPhone='" + contactPhone + "\'\n" +

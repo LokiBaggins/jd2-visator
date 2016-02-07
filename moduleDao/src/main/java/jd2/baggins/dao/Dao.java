@@ -2,9 +2,10 @@ package jd2.baggins.dao;
 
 import jd2.baggins.exceptions.DaoException;
 
+import java.io.Serializable;
 import java.util.List;
 
-public interface Dao<T> {
+public interface Dao<T extends Serializable> {
     //TODO: add custom exceptions
     //TODO: add exception handling
 
