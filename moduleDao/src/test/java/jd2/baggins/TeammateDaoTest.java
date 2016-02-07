@@ -1,16 +1,15 @@
 package jd2.baggins;
 
 import jd2.baggins.beans.Teammate;
-import jd2.baggins.dao.TeammateHiberDao;
-import jd2.baggins.utils.HibernateUtil;
+import jd2.baggins.dao.GenericDao;
+import jd2.baggins.dao.TeammateDao;
 import junit.framework.Assert;
 import org.junit.Test;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
-public class TeammateHiberDaoTest extends Assert {
+public class TeammateDaoTest extends Assert {
     private String tNickName = "test_nickName";
     private String tNickName_up = "test_nickNameUpdated";
 
@@ -65,31 +64,32 @@ public class TeammateHiberDaoTest extends Assert {
             e.printStackTrace();
         }
 
-        List<Teammate> tmList = new TeammateHiberDao().getAll();
+        List<Teammate> tmList = new GenericDao<Teammate>(Teammate.class).getAll();
         assertEquals(rowsCount, tmList.size());
     }
 
     @Test
     public void testGetById() {
         int id = 0;
-        Teammate tm = new Teammate();
-        TeammateHiberDao dao = new TeammateHiberDao();
+        Teammate tm = null;
+        GenericDao dao = new GenericDao<>(Teammate.class);
         List<Teammate> tmList = dao.getAll();
         if (tmList.size() > 0) {
             id = tmList.get(0).getId();
         }
-        tm = new TeammateHiberDao().getById(id);
+        tm = new TeammateDao().getById(id);
         assertEquals(tm.getId(), id);
     }
 
     @Test
     public void testAdd() {
         Teammate tm = new Teammate();
+        GenericDao dao = new GenericDao<>(Teammate.class);
         tm.setNickName(tNickName);
-        new TeammateHiberDao().add(tm);
+        dao.add(tm);
 
         boolean contains = false;
-        List<Teammate> tmList = new TeammateHiberDao().getAll();
+        List<Teammate> tmList = dao.getAll();
         for (Teammate t : tmList) {
             if (t.getNickName().equals(tNickName)) { contains = true; }
         }
@@ -99,7 +99,7 @@ public class TeammateHiberDaoTest extends Assert {
     @Test
     public void testUpdate() {
         Teammate tm = new Teammate();
-        TeammateHiberDao dao = new TeammateHiberDao();
+        GenericDao dao = new GenericDao<>(Teammate.class);
         List<Teammate> tmList = dao.getAll();
         if (tmList.size() > 0) {
             tm = tmList.get(0);
@@ -107,13 +107,13 @@ public class TeammateHiberDaoTest extends Assert {
         tm.setNickName(tNickName_up);
         dao.update(tm);
 
-        tm = dao.getById(tm.getId());
+        tm = (Teammate) dao.getById(tm.getId());
         assertEquals(tNickName_up, tm.getNickName());
     }
 
     @Test
     public void testDelete() {
-        TeammateHiberDao dao = new TeammateHiberDao();
+        GenericDao dao = new GenericDao<Teammate>(Teammate.class);
         List<Teammate> tmListBefore = dao.getAll();
         if (tmListBefore.size() > 0) {
             dao.delete(tmListBefore.get(0));
