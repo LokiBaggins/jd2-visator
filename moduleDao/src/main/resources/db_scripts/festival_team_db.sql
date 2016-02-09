@@ -24,7 +24,9 @@ CREATE TABLE IF NOT EXISTS ` t_employers` (
   `c_phone` varchar(50) DEFAULT NULL,
   `c_email` varchar(50) DEFAULT NULL,
   `c_fk_address_id` int(9) DEFAULT NULL,
-  PRIMARY KEY (`c_ID`)
+  PRIMARY KEY (`c_ID`),
+  KEY `fk_address_id` (`c_fk_address_id`),
+  CONSTRAINT `fk_address_id` FOREIGN KEY (`c_fk_address_id`) REFERENCES `t_addresses` (`c_ID`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table festival_team_db. t_employers: ~3 rows (approximately)
@@ -50,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `t_addresses` (
   `c_fk_street_type` int(9) DEFAULT NULL,
   PRIMARY KEY (`c_ID`),
   KEY `c_fk_street_type` (`c_fk_street_type`),
-  CONSTRAINT `c_fk_street_type` FOREIGN KEY (`c_fk_street_type`) REFERENCES `t_street_types` (`c_ID`) ON DELETE SET NULL ON UPDATE SET NULL
+  CONSTRAINT `c_fk_street_type` FOREIGN KEY (`c_fk_street_type`) REFERENCES `t_street_types` (`c_ID`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table festival_team_db.t_addresses: ~4 rows (approximately)
@@ -171,7 +173,7 @@ CREATE TABLE IF NOT EXISTS `t_teammates` (
   CONSTRAINT `c_FK_current_address_id` FOREIGN KEY (`c_fk_current_address_id`) REFERENCES `t_addresses` (`c_ID`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `c_FK_occupation_id` FOREIGN KEY (`c_fk_occupation_id`) REFERENCES `t_occupations` (`c_ID`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `c_FK_passport_id` FOREIGN KEY (`c_fk_passport_id`) REFERENCES `t_passports` (`c_ID`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `c_FK_sexes_id` FOREIGN KEY (`c_fk_sexes_id`) REFERENCES `t_sexes` (`c_ID`)
+  CONSTRAINT `c_FK_sexes_id` FOREIGN KEY (`c_fk_sexes_id`) REFERENCES `t_sexes` (`c_ID`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table festival_team_db.t_teammates: ~2 rows (approximately)
