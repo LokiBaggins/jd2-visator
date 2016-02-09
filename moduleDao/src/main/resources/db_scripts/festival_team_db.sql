@@ -19,11 +19,11 @@ USE `festival_team_db`;
 
 -- Dumping structure for table festival_team_db. t_employers
 CREATE TABLE IF NOT EXISTS ` t_employers` (
-  `c_ID` int(5) NOT NULL AUTO_INCREMENT,
+  `c_ID` int(9) NOT NULL AUTO_INCREMENT,
   `c_name` varchar(50) DEFAULT NULL,
   `c_phone` varchar(50) DEFAULT NULL,
   `c_email` varchar(50) DEFAULT NULL,
-  `c_fk_address_id` int(11) DEFAULT NULL,
+  `c_fk_address_id` int(9) DEFAULT NULL,
   PRIMARY KEY (`c_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
@@ -38,7 +38,7 @@ INSERT INTO ` t_employers` (`c_ID`, `c_name`, `c_phone`, `c_email`, `c_fk_addres
 
 -- Dumping structure for table festival_team_db.t_addresses
 CREATE TABLE IF NOT EXISTS `t_addresses` (
-  `c_ID` int(5) NOT NULL AUTO_INCREMENT,
+  `c_ID` int(9) NOT NULL AUTO_INCREMENT,
   `c_country` varchar(50) DEFAULT NULL,
   `c_city` varchar(50) DEFAULT NULL,
   `c_building` varchar(4) DEFAULT NULL,
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `t_addresses` (
   `c_flat` varchar(5) DEFAULT NULL,
   `c_zip_code` varchar(10) DEFAULT NULL,
   `c_city_phone` varchar(10) DEFAULT NULL,
-  `c_fk_street_type` int(2) DEFAULT NULL,
+  `c_fk_street_type` int(9) DEFAULT NULL,
   PRIMARY KEY (`c_ID`),
   KEY `c_fk_street_type` (`c_fk_street_type`),
   CONSTRAINT `c_fk_street_type` FOREIGN KEY (`c_fk_street_type`) REFERENCES `t_street_types` (`c_ID`) ON DELETE SET NULL ON UPDATE SET NULL
@@ -65,12 +65,12 @@ INSERT INTO `t_addresses` (`c_ID`, `c_country`, `c_city`, `c_building`, `c_stree
 
 -- Dumping structure for table festival_team_db.t_occupations
 CREATE TABLE IF NOT EXISTS `t_occupations` (
-  `c_ID` int(5) NOT NULL AUTO_INCREMENT,
+  `c_ID` int(9) NOT NULL AUTO_INCREMENT,
   `c_post` varchar(50) DEFAULT NULL,
   `c_stud_department` varchar(50) DEFAULT NULL,
   `c_stud_group` varchar(10) DEFAULT NULL,
   `c_stud_course` int(1) DEFAULT NULL,
-  `c_fk_employer_id` int(5) DEFAULT NULL,
+  `c_fk_employer_id` int(9) DEFAULT NULL,
   PRIMARY KEY (`c_ID`),
   KEY `c_FK_employer_id` (`c_fk_employer_id`),
   CONSTRAINT `c_FK_employer_id` FOREIGN KEY (`c_fk_employer_id`) REFERENCES ` t_employers` (`c_ID`) ON DELETE SET NULL ON UPDATE CASCADE
@@ -86,7 +86,7 @@ INSERT INTO `t_occupations` (`c_ID`, `c_post`, `c_stud_department`, `c_stud_grou
 
 -- Dumping structure for table festival_team_db.t_passports
 CREATE TABLE IF NOT EXISTS `t_passports` (
-  `c_ID` int(5) NOT NULL AUTO_INCREMENT,
+  `c_ID` int(9) NOT NULL AUTO_INCREMENT,
   `c_personal_num` varchar(14) DEFAULT '0',
   `c_f_name_lat` varchar(50) DEFAULT NULL,
   `c_l_name_lat` varchar(50) DEFAULT NULL,
@@ -102,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `t_passports` (
   PRIMARY KEY (`c_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Dumping data for table festival_team_db.t_passports: ~0 rows (approximately)
+-- Dumping data for table festival_team_db.t_passports: ~2 rows (approximately)
 /*!40000 ALTER TABLE `t_passports` DISABLE KEYS */;
 INSERT INTO `t_passports` (`c_ID`, `c_personal_num`, `c_f_name_lat`, `c_l_name_lat`, `c_series`, `c_number`, `c_issue_date`, `c_expiry_date`, `c_issuing_org`, `c_issuing_org_inner`, `c_registration_address`, `c_fingers`, `c_citizenship`) VALUES
 	(1, '1234567A123AB1', 'Name1', 'Surname1', 'AA', 1234567, '2015-12-29', '2015-12-31', 'MINISTRY OF INTERNAL AFFAIRS', 'Жэстачайшы РУВД г. Минска', '1', 0, 'REPUBLIC OF BELARUS'),
@@ -112,7 +112,7 @@ INSERT INTO `t_passports` (`c_ID`, `c_personal_num`, `c_f_name_lat`, `c_l_name_l
 
 -- Dumping structure for table festival_team_db.t_sexes
 CREATE TABLE IF NOT EXISTS `t_sexes` (
-  `c_ID` int(1) NOT NULL AUTO_INCREMENT,
+  `c_ID` int(9) NOT NULL AUTO_INCREMENT,
   `c_sex_name` varchar(10) NOT NULL DEFAULT '0',
   PRIMARY KEY (`c_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
@@ -127,7 +127,7 @@ INSERT INTO `t_sexes` (`c_ID`, `c_sex_name`) VALUES
 
 -- Dumping structure for table festival_team_db.t_street_types
 CREATE TABLE IF NOT EXISTS `t_street_types` (
-  `c_ID` int(2) NOT NULL AUTO_INCREMENT,
+  `c_ID` int(9) NOT NULL AUTO_INCREMENT,
   `c_type_name` varchar(10) NOT NULL DEFAULT '0',
   `c_type_code` varchar(10) NOT NULL DEFAULT '0',
   PRIMARY KEY (`c_ID`)
@@ -151,7 +151,7 @@ INSERT INTO `t_street_types` (`c_ID`, `c_type_name`, `c_type_code`) VALUES
 
 -- Dumping structure for table festival_team_db.t_teammates
 CREATE TABLE IF NOT EXISTS `t_teammates` (
-  `c_ID` int(5) NOT NULL AUTO_INCREMENT,
+  `c_ID` int(9) NOT NULL AUTO_INCREMENT,
   `c_nick_name` varchar(50) DEFAULT NULL,
   `c_f_name_cyr` varchar(50) DEFAULT NULL,
   `c_m_name_cyr` varchar(50) DEFAULT NULL,
@@ -160,9 +160,9 @@ CREATE TABLE IF NOT EXISTS `t_teammates` (
   `c_vk_profile` varchar(50) DEFAULT NULL,
   `c_contact_phone` varchar(50) DEFAULT NULL,
   `c_fk_sexes_id` int(1) DEFAULT NULL,
-  `c_fk_passport_id` int(5) DEFAULT NULL,
-  `c_fk_occupation_id` int(5) DEFAULT NULL,
-  `c_fk_current_address_id` int(5) DEFAULT NULL,
+  `c_fk_passport_id` int(9) DEFAULT NULL,
+  `c_fk_occupation_id` int(9) DEFAULT NULL,
+  `c_fk_current_address_id` int(9) DEFAULT NULL,
   PRIMARY KEY (`c_ID`),
   KEY `c_fk_passport_id` (`c_fk_passport_id`),
   KEY `c_fk_occupation_id` (`c_fk_occupation_id`),
