@@ -47,13 +47,13 @@ CREATE TABLE IF NOT EXISTS `t_addresses` (
   `c_flat` varchar(5) DEFAULT NULL,
   `c_zip_code` varchar(10) DEFAULT NULL,
   `c_city_phone` varchar(10) DEFAULT NULL,
-  `c_fk_street_type` int(10) DEFAULT NULL,
+  `c_fk_street_type` int(2) DEFAULT NULL,
   PRIMARY KEY (`c_ID`),
   KEY `c_fk_street_type` (`c_fk_street_type`),
   CONSTRAINT `c_fk_street_type` FOREIGN KEY (`c_fk_street_type`) REFERENCES `t_street_types` (`c_ID`) ON DELETE SET NULL ON UPDATE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
--- Dumping data for table festival_team_db.t_addresses: ~5 rows (approximately)
+-- Dumping data for table festival_team_db.t_addresses: ~4 rows (approximately)
 /*!40000 ALTER TABLE `t_addresses` DISABLE KEYS */;
 INSERT INTO `t_addresses` (`c_ID`, `c_country`, `c_city`, `c_building`, `c_street_name`, `c_block`, `c_flat`, `c_zip_code`, `c_city_phone`, `c_fk_street_type`) VALUES
 	(1, 'Belarus', 'City1', '11', 'Street1', NULL, '11', '220011', '1234567', 1),
@@ -102,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `t_passports` (
   PRIMARY KEY (`c_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Dumping data for table festival_team_db.t_passports: ~2 rows (approximately)
+-- Dumping data for table festival_team_db.t_passports: ~0 rows (approximately)
 /*!40000 ALTER TABLE `t_passports` DISABLE KEYS */;
 INSERT INTO `t_passports` (`c_ID`, `c_personal_num`, `c_f_name_lat`, `c_l_name_lat`, `c_series`, `c_number`, `c_issue_date`, `c_expiry_date`, `c_issuing_org`, `c_issuing_org_inner`, `c_registration_address`, `c_fingers`, `c_citizenship`) VALUES
 	(1, '1234567A123AB1', 'Name1', 'Surname1', 'AA', 1234567, '2015-12-29', '2015-12-31', 'MINISTRY OF INTERNAL AFFAIRS', 'Жэстачайшы РУВД г. Минска', '1', 0, 'REPUBLIC OF BELARUS'),
@@ -172,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `t_teammates` (
   CONSTRAINT `c_FK_occupation_id` FOREIGN KEY (`c_fk_occupation_id`) REFERENCES `t_occupations` (`c_ID`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `c_FK_passport_id` FOREIGN KEY (`c_fk_passport_id`) REFERENCES `t_passports` (`c_ID`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `c_FK_sexes_id` FOREIGN KEY (`c_fk_sexes_id`) REFERENCES `t_sexes` (`c_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table festival_team_db.t_teammates: ~2 rows (approximately)
 /*!40000 ALTER TABLE `t_teammates` DISABLE KEYS */;
