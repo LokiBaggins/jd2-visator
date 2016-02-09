@@ -46,7 +46,6 @@
 
     <modules>
         <module>moduleDao</module>
-        <module>moduleDB</module>
         <module>moduleLogic</module>
         <module>moduleFront</module>
     </modules>
