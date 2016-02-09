@@ -11,16 +11,16 @@ public class Passport implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="c_ID")
-    int id;
+    private int id;
 
     @Column(name = "c_personal_num")
-    String personalNum;
+    private String personalNum;
 
     @Column(name = "c_f_name_lat")
-    String firstNameLatin;
+    private String firstNameLatin;
 
     @Column(name="c_l_name_lat")
-    String lastNameLatin;
+    private String lastNameLatin;
 
     @Column(name = "c_series", length = 2)
     String series;
@@ -40,17 +40,18 @@ public class Passport implements Serializable {
     @Column(name = "c_issuing_org_inner")
     String issuingOrganizationInner;
 
-    //    Address registrAddress;
-    @Column(name = "c_registration_address")
-    String registryAddress;
-
     @Column(name = "c_fingers")
     boolean fingersTaken;
 
     @Column(name = "c_citizenship")
     String citizenship;
 
-    @OneToOne
+//    @Column(name = "c_registration_address")
+//    String registryAddress;
+    @OneToOne(mappedBy = "passport")
+    Address registryAddress;
+
+    @OneToOne()
     @PrimaryKeyJoinColumn
     private Teammate teammate;
 
@@ -134,13 +135,21 @@ public class Passport implements Serializable {
         this.issuingOrganizationInner = issuingOrganizationInner;
     }
 
-    public String getRegistryAddress() {
+    public Address getRegistryAddress() {
         return registryAddress;
     }
 
-    public void setRegistryAddress(String registryAddress) {
+    public void setRegistryAddress(Address registryAddress) {
         this.registryAddress = registryAddress;
     }
+
+    //    public String getRegistryAddress() {
+//        return registryAddress;
+//    }
+//
+//    public void setRegistryAddress(String registryAddress) {
+//        this.registryAddress = registryAddress;
+//    }
 
     public boolean isFingersTaken() {
         return fingersTaken;
@@ -179,7 +188,8 @@ public class Passport implements Serializable {
                 ", experyDate=" + experyDate +
                 ", issuingOrganization='" + issuingOrganization + '\'' +
                 ", issuingOrganizationInner='" + issuingOrganizationInner + '\'' +
-                ", registryAddress='" + registryAddress + '\'' +
+                ", RegistryAddress='" + ((registryAddress != null) ?
+                    (registryAddress.getStreetName() + ", b." + registryAddress.getBuildingNum()) : "") + '\'' +
                 ", fingersTaken=" + fingersTaken +
                 ", citizenship='" + citizenship + '\'' +
                 '}';

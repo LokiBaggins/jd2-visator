@@ -13,5 +13,7 @@
     <%--<p>And the first one is ${teammate.nickName} with sex: ${teammate.sex}</p>--%>
     <%--<p>And the first one is ${teammate.nickName}</p>--%>
     <p>And the first one is ${teammate} </p>
+    <p>With passport ${teammate.passport}</p>
+    <p>Registred: ${teammate.passport.registryAddress}</p>
 </body>
 </html>

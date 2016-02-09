@@ -18,13 +18,12 @@
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
 
-        <!-- List of XML mapping files -->
-        <!--<mapping resource="Teammate.hbm.xml"/>-->
-        <!--<mapping resource="Sex.hbm.xml"/>-->
-
+        <!-- List of mapping files -->
         <mapping class="jd2.baggins.beans.Passport" />
         <mapping class="jd2.baggins.beans.Teammate" />
         <mapping class="jd2.baggins.beans.Sex" />
+        <mapping class="jd2.baggins.beans.Address" />
+
 
     </session-factory>
 </hibernate-configuration>

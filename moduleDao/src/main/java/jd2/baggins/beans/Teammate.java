@@ -42,8 +42,8 @@ public class Teammate implements Serializable {
 //    private int sexId;
 
     @OneToOne(mappedBy = "teammate", cascade = CascadeType.ALL)
-//    @Column(name = "c_fk_passport_id")
     private Passport passport;
+//    @Column(name = "c_fk_passport_id")
 //    private int passportId;
 
 //    @Column(name = "c_fk_occupation_id")
@@ -168,7 +168,7 @@ public class Teammate implements Serializable {
                 ", midNameCyr='" + midNameCyr + "\'\n" +
                 ", lastNameCyr='" + lastNameCyr + "\'\n" +
                 ", birthDate='" + birthDate + "\'\n" +
-                ", Passoprt='" + ((passport != null) ? passport.toString() : "") + "\'\n" +
+                ", Passoprt='" + ((passport != null) ? passport.getPersonalNum() : "") + "\'\n" +
                 ", sex='" + ((sex != null) ? sex.getSexName() : "") + "\'\n" +
 //                ", sexN='" + sexId + "\'\n" +
                 ", vkProfile='" + vkProfile + "\'\n" +
