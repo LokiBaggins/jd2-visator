@@ -1,20 +1,58 @@
 package jd2.baggins.beans;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
-public class Teammate {
-    int id;
-    String nickName;
-    String firstNameCyr;
-    String midNameCyr;
-    String lastNameCyr;
-    Date birthDate;
-    int sex;
-    String vkProfile;
-    String contactPhone;
-    int passportId;
-    int occupationId;
-    int currentAddressId;
+@Entity
+@Table(name = "t_teammates")
+public class Teammate implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "c_ID")
+    private int id;
+
+    @Column(name = "c_nick_name")
+    private String nickName;
+
+    @Column(name = "c_f_name_cyr")
+    private String firstNameCyr;
+
+    @Column(name = "c_m_name_cyr")
+    private String midNameCyr;
+
+    @Column(name = "c_l_name_cyr")
+    private String lastNameCyr;
+
+    @Column(name = "c_birth_date")
+    private Date birthDate;
+
+    @Column(name = "c_vk_profile")
+    private String vkProfile;
+
+    @Column(name = "c_contact_phone")
+    private String contactPhone;
+
+    @ManyToOne
+    @JoinColumn(name = "c_fk_sexes_id")
+    private Sex sex;
+//    @Column(name = "c_fk_sexes_id")
+//    private int sexId;
+
+    @OneToOne(mappedBy = "teammate", cascade = CascadeType.ALL)
+    private Passport passport;
+//    @Column(name = "c_fk_passport_id")
+//    private int passportId;
+
+//    @Column(name = "c_fk_occupation_id")
+//    private int occupationId;
+
+//    @Column(name = "c_fk_current_address_id")
+//    private int currentAddressId;
+
+    public Teammate() {}
 
     public int getId() {
         return id;
@@ -64,13 +102,22 @@ public class Teammate {
         this.birthDate = birthDate;
     }
 
-    public int getSex() {
+    public Sex getSex() {
         return sex;
     }
 
-    public void setSex(int sex) {
+    public void setSex(Sex sex) {
         this.sex = sex;
     }
+
+//
+//    public int getSexId() {
+//        return sexId;
+//    }
+//
+//    public void setSexId(int sexId) {
+//        this.sexId = sexId;
+//    }
 
     public String getVkProfile() {
         return vkProfile;
@@ -88,42 +135,44 @@ public class Teammate {
         this.contactPhone = contactPhone;
     }
 
-    public int getPassportId() {
-        return passportId;
+    public Passport getPassport() {
+        return passport;
     }
 
-    public void setPassportId(int passportId) {
-        this.passportId = passportId;
+    public void setPassport(Passport passport) {
+        this.passport = passport;
     }
 
-    public int getOccupationId() {
-        return occupationId;
-    }
-
-    public void setOccupationId(int occupationId) {
-        this.occupationId = occupationId;
-    }
-
-    public int getCurrentAddressId() {
-        return currentAddressId;
-    }
-
-    public void setCurrentAddressId(int currentAddressId) {
-        this.currentAddressId = currentAddressId;
-    }
+//    public int getOccupationId() {
+//        return occupationId;
+//    }
+//
+//    public void setOccupationId(int occupationId) {
+//        this.occupationId = occupationId;
+//    }
+//
+//    public int getCurrentAddressId() {
+//        return currentAddressId;
+//    }
+//
+//    public void setCurrentAddressId(int currentAddressId) {
+//        this.currentAddressId = currentAddressId;
+//    }
 
     @Override
     public String toString() {
         return "Teammate{" +
                 "id=" + id +
-                ", nickName='" + nickName + '\'' +
-                ", firstNameCyr='" + firstNameCyr + '\'' +
-                ", midNameCyr='" + midNameCyr + '\'' +
-                ", lastNameCyr='" + lastNameCyr + '\'' +
-                ", birthDate='" + birthDate + '\'' +
-                ", sex='" + sex + '\'' +
-                ", vkProfile='" + vkProfile + '\'' +
-                ", contactPhone='" + contactPhone + '\'' +
+                ", nickName='" + nickName + "\'" +
+                ", firstNameCyr='" + firstNameCyr + "\'\n" +
+                ", midNameCyr='" + midNameCyr + "\'\n" +
+                ", lastNameCyr='" + lastNameCyr + "\'\n" +
+                ", birthDate='" + birthDate + "\'\n" +
+                ", Passoprt='" + ((passport != null) ? passport.getPersonalNum() : "") + "\'\n" +
+                ", sex='" + ((sex != null) ? sex.getSexName() : "") + "\'\n" +
+//                ", sexN='" + sexId + "\'\n" +
+                ", vkProfile='" + vkProfile + "\'\n" +
+                ", contactPhone='" + contactPhone + "\'\n" +
                 '}';
     }
 }

@@ -1,11 +1,7 @@
-package jd2.baggins.hibernate;
+package jd2.baggins.utils;
 
-import jd2.baggins.beans.Teammate;
-import jd2.baggins.dao.TeammateHiberDao;
+import jd2.baggins.dao.TeammateDao;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
@@ -14,6 +10,6 @@ public class HibernateConsole {
         System.out.println("Choose an option to do:");
         System.out.println("1.Find user by ID;");
         Scanner sc = new Scanner(new InputStreamReader(System.in));
-        System.out.println(new TeammateHiberDao().getById(1));
+        System.out.println(new TeammateDao().getById(1));
     }
 }

@@ -1,4 +1,4 @@
-package jd2.baggins.hibernate;
+package jd2.baggins.utils;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
