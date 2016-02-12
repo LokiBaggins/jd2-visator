@@ -1,7 +1,7 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
 -- Server version:               5.7.10-log - MySQL Community Server (GPL)
--- Server OS:                    Win32
+-- Server OS:                    Win64
 -- HeidiSQL Version:             9.3.0.5040
 -- --------------------------------------------------------
 
@@ -68,7 +68,7 @@ INSERT INTO `t_addresses` (`c_ID`, `c_country`, `c_city`, `c_building`, `c_stree
 -- Dumping structure for table festival_team_db.t_occupations
 CREATE TABLE IF NOT EXISTS `t_occupations` (
   `c_ID` int(9) NOT NULL AUTO_INCREMENT,
-  `c_post` varchar(50) DEFAULT NULL,
+  `c_position` varchar(50) DEFAULT NULL,
   `c_stud_department` varchar(50) DEFAULT NULL,
   `c_stud_group` varchar(10) DEFAULT NULL,
   `c_stud_course` int(1) DEFAULT NULL,
@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `t_occupations` (
 
 -- Dumping data for table festival_team_db.t_occupations: ~2 rows (approximately)
 /*!40000 ALTER TABLE `t_occupations` DISABLE KEYS */;
-INSERT INTO `t_occupations` (`c_ID`, `c_post`, `c_stud_department`, `c_stud_group`, `c_stud_course`, `c_fk_employer_id`) VALUES
+INSERT INTO `t_occupations` (`c_ID`, `c_position`, `c_stud_department`, `c_stud_group`, `c_stud_course`, `c_fk_employer_id`) VALUES
 	(1, 'worker', NULL, NULL, NULL, 1),
 	(2, 'student', 'Some Department', '111', 1, 2);
 /*!40000 ALTER TABLE `t_occupations` ENABLE KEYS */;
