@@ -2,7 +2,6 @@ package jd2.baggins;
 
 import jd2.baggins.beans.Teammate;
 import jd2.baggins.dao.GenericDao;
-import jd2.baggins.dao.TeammateDao;
 import junit.framework.Assert;
 import org.junit.Test;
 
@@ -72,12 +71,12 @@ public class TeammateDaoTest extends Assert {
     public void testGetById() {
         int id = 0;
         Teammate tm = null;
-        GenericDao dao = new GenericDao<>(Teammate.class);
+        GenericDao<Teammate> dao = new GenericDao<>(Teammate.class);
         List<Teammate> tmList = dao.getAll();
         if (tmList.size() > 0) {
             id = tmList.get(0).getId();
         }
-        tm = new TeammateDao().getById(id);
+        tm = dao.getById(id);
         assertEquals(tm.getId(), id);
     }
 

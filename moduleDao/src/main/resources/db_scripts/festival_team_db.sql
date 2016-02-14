@@ -17,27 +17,6 @@ CREATE DATABASE IF NOT EXISTS `festival_team_db` /*!40100 DEFAULT CHARACTER SET 
 USE `festival_team_db`;
 
 
--- Dumping structure for table festival_team_db. t_employers
-CREATE TABLE IF NOT EXISTS ` t_employers` (
-  `c_ID` int(9) NOT NULL AUTO_INCREMENT,
-  `c_name` varchar(50) DEFAULT NULL,
-  `c_phone` varchar(50) DEFAULT NULL,
-  `c_email` varchar(50) DEFAULT NULL,
-  `c_fk_address_id` int(9) DEFAULT NULL,
-  PRIMARY KEY (`c_ID`),
-  KEY `fk_address_id` (`c_fk_address_id`),
-  CONSTRAINT `fk_address_id` FOREIGN KEY (`c_fk_address_id`) REFERENCES `t_addresses` (`c_ID`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
--- Dumping data for table festival_team_db. t_employers: ~3 rows (approximately)
-/*!40000 ALTER TABLE ` t_employers` DISABLE KEYS */;
-INSERT INTO ` t_employers` (`c_ID`, `c_name`, `c_phone`, `c_email`, `c_fk_address_id`) VALUES
-	(1, 'Some Work_1', '+375171111111', 'employer1@some.com', 1),
-	(2, 'Some University_1', '+375172222222', 'employer2@some.com', 2),
-	(3, 'Some Work_2', '+375173333333', 'employer3@some.com', 3);
-/*!40000 ALTER TABLE ` t_employers` ENABLE KEYS */;
-
-
 -- Dumping structure for table festival_team_db.t_addresses
 CREATE TABLE IF NOT EXISTS `t_addresses` (
   `c_ID` int(9) NOT NULL AUTO_INCREMENT,
@@ -65,6 +44,27 @@ INSERT INTO `t_addresses` (`c_ID`, `c_country`, `c_city`, `c_building`, `c_stree
 /*!40000 ALTER TABLE `t_addresses` ENABLE KEYS */;
 
 
+-- Dumping structure for table festival_team_db.t_employers
+CREATE TABLE IF NOT EXISTS `t_employers` (
+  `c_ID` int(9) NOT NULL AUTO_INCREMENT,
+  `c_name` varchar(50) DEFAULT NULL,
+  `c_phone` varchar(50) DEFAULT NULL,
+  `c_email` varchar(50) DEFAULT NULL,
+  `c_fk_address_id` int(9) DEFAULT NULL,
+  PRIMARY KEY (`c_ID`),
+  KEY `fk_address_id` (`c_fk_address_id`),
+  CONSTRAINT `fk_address_id` FOREIGN KEY (`c_fk_address_id`) REFERENCES `t_addresses` (`c_ID`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- Dumping data for table festival_team_db.t_employers: ~3 rows (approximately)
+/*!40000 ALTER TABLE `t_employers` DISABLE KEYS */;
+INSERT INTO `t_employers` (`c_ID`, `c_name`, `c_phone`, `c_email`, `c_fk_address_id`) VALUES
+	(1, 'Some Work_1', '+375171111111', 'employer1@some.com', 1),
+	(2, 'Some University_1', '+375172222222', 'employer2@some.com', 2),
+	(3, 'Some Work_2', '+375173333333', 'employer3@some.com', 3);
+/*!40000 ALTER TABLE `t_employers` ENABLE KEYS */;
+
+
 -- Dumping structure for table festival_team_db.t_occupations
 CREATE TABLE IF NOT EXISTS `t_occupations` (
   `c_ID` int(9) NOT NULL AUTO_INCREMENT,
@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `t_occupations` (
   `c_fk_employer_id` int(9) DEFAULT NULL,
   PRIMARY KEY (`c_ID`),
   KEY `c_FK_employer_id` (`c_fk_employer_id`),
-  CONSTRAINT `c_FK_employer_id` FOREIGN KEY (`c_fk_employer_id`) REFERENCES ` t_employers` (`c_ID`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `c_FK_employer_id` FOREIGN KEY (`c_fk_employer_id`) REFERENCES `t_employers` (`c_ID`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table festival_team_db.t_occupations: ~2 rows (approximately)
@@ -98,17 +98,22 @@ CREATE TABLE IF NOT EXISTS `t_passports` (
   `c_expiry_date` date DEFAULT NULL,
   `c_issuing_org` varchar(50) DEFAULT NULL,
   `c_issuing_org_inner` varchar(50) DEFAULT NULL,
-  `c_registration_address` varchar(50) DEFAULT NULL,
   `c_fingers` int(1) NOT NULL DEFAULT '0',
   `c_citizenship` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`c_ID`)
+  `c_fk_registr_address_id` int(9) DEFAULT NULL,
+  `c_fk_teammates_id` int(9) DEFAULT NULL,
+  PRIMARY KEY (`c_ID`),
+  KEY `c_fk_addresses_id` (`c_fk_registr_address_id`),
+  KEY `c_fk_teammate_id` (`c_fk_teammates_id`),
+  CONSTRAINT `fk_addresses_id` FOREIGN KEY (`c_fk_registr_address_id`) REFERENCES `t_addresses` (`c_ID`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `fk_teammate_id` FOREIGN KEY (`c_fk_teammates_id`) REFERENCES `t_teammates` (`c_ID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table festival_team_db.t_passports: ~2 rows (approximately)
 /*!40000 ALTER TABLE `t_passports` DISABLE KEYS */;
-INSERT INTO `t_passports` (`c_ID`, `c_personal_num`, `c_f_name_lat`, `c_l_name_lat`, `c_series`, `c_number`, `c_issue_date`, `c_expiry_date`, `c_issuing_org`, `c_issuing_org_inner`, `c_registration_address`, `c_fingers`, `c_citizenship`) VALUES
-	(1, '1234567A123AB1', 'Name1', 'Surname1', 'AA', 1234567, '2015-12-29', '2015-12-31', 'MINISTRY OF INTERNAL AFFAIRS', 'Жэстачайшы РУВД г. Минска', '1', 0, 'REPUBLIC OF BELARUS'),
-	(2, '7654321B321BA1', 'Name2', 'Surname2', 'BB', 7654321, '2016-12-29', '2016-12-31', 'MINISTRY OF INTERNAL AFFAIRS', 'Жэстачайшы РУВД г. Минска', '2', 1, 'REPUBLIC OF BELARUS');
+INSERT INTO `t_passports` (`c_ID`, `c_personal_num`, `c_f_name_lat`, `c_l_name_lat`, `c_series`, `c_number`, `c_issue_date`, `c_expiry_date`, `c_issuing_org`, `c_issuing_org_inner`, `c_fingers`, `c_citizenship`, `c_fk_registr_address_id`, `c_fk_teammates_id`) VALUES
+	(1, '1234567A123AB1', 'Name1', 'Surname1', 'AA', 1234567, '2015-12-29', '2015-12-31', 'MINISTRY OF INTERNAL AFFAIRS', 'Жэстачайшы РУВД г. Минска', 0, 'REPUBLIC OF BELARUS', 4, 1),
+	(2, '7654321B321BA1', 'Name2', 'Surname2', 'BB', 7654321, '2016-12-29', '2016-12-31', 'MINISTRY OF INTERNAL AFFAIRS', 'Жэстачайшы РУВД г. Минска', 1, 'REPUBLIC OF BELARUS', 3, 2);
 /*!40000 ALTER TABLE `t_passports` ENABLE KEYS */;
 
 
@@ -162,25 +167,22 @@ CREATE TABLE IF NOT EXISTS `t_teammates` (
   `c_vk_profile` varchar(50) DEFAULT NULL,
   `c_contact_phone` varchar(50) DEFAULT NULL,
   `c_fk_sexes_id` int(1) DEFAULT NULL,
-  `c_fk_passport_id` int(9) DEFAULT NULL,
   `c_fk_occupation_id` int(9) DEFAULT NULL,
   `c_fk_current_address_id` int(9) DEFAULT NULL,
   PRIMARY KEY (`c_ID`),
-  KEY `c_fk_passport_id` (`c_fk_passport_id`),
   KEY `c_fk_occupation_id` (`c_fk_occupation_id`),
   KEY `c_fk_address_id` (`c_fk_current_address_id`),
   KEY `c_fk_sex_id` (`c_fk_sexes_id`),
   CONSTRAINT `c_FK_current_address_id` FOREIGN KEY (`c_fk_current_address_id`) REFERENCES `t_addresses` (`c_ID`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `c_FK_occupation_id` FOREIGN KEY (`c_fk_occupation_id`) REFERENCES `t_occupations` (`c_ID`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `c_FK_passport_id` FOREIGN KEY (`c_fk_passport_id`) REFERENCES `t_passports` (`c_ID`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `c_FK_sexes_id` FOREIGN KEY (`c_fk_sexes_id`) REFERENCES `t_sexes` (`c_ID`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table festival_team_db.t_teammates: ~2 rows (approximately)
 /*!40000 ALTER TABLE `t_teammates` DISABLE KEYS */;
-INSERT INTO `t_teammates` (`c_ID`, `c_nick_name`, `c_f_name_cyr`, `c_m_name_cyr`, `c_l_name_cyr`, `c_birth_date`, `c_vk_profile`, `c_contact_phone`, `c_fk_sexes_id`, `c_fk_passport_id`, `c_fk_occupation_id`, `c_fk_current_address_id`) VALUES
-	(1, 'TeamMate1', 'Имя1', 'Отчество1', 'Фамилия1', '2011-01-11', 'http://vk.com/loki_baggins', '+375291234567', 1, 1, 1, 1),
-	(2, 'TeamMate2', 'Имя2', 'Отчество2', 'Фамилия2', '2022-02-22', 'http://vk.com/tm2', '+375292345678', 2, 2, 2, 3);
+INSERT INTO `t_teammates` (`c_ID`, `c_nick_name`, `c_f_name_cyr`, `c_m_name_cyr`, `c_l_name_cyr`, `c_birth_date`, `c_vk_profile`, `c_contact_phone`, `c_fk_sexes_id`, `c_fk_occupation_id`, `c_fk_current_address_id`) VALUES
+	(1, 'TeamMate1', 'Имя1', 'Отчество1', 'Фамилия1', '2011-01-11', 'http://vk.com/loki_baggins', '+375291234567', 1, 1, 1),
+	(2, 'TeamMate2', 'Имя2', 'Отчество2', 'Фамилия2', '2022-02-22', 'http://vk.com/tm2', '+375292345678', 2, 2, 3);
 /*!40000 ALTER TABLE `t_teammates` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

@@ -38,19 +38,16 @@ public class Teammate implements Serializable {
     @ManyToOne
     @JoinColumn(name = "c_fk_sexes_id")
     private Sex sex;
-//    @Column(name = "c_fk_sexes_id")
-//    private int sexId;
 
     @OneToOne(mappedBy = "teammate", cascade = CascadeType.ALL)
     private Passport passport;
-//    @Column(name = "c_fk_passport_id")
-//    private int passportId;
 
 //    @Column(name = "c_fk_occupation_id")
 //    private int occupationId;
 
-//    @Column(name = "c_fk_current_address_id")
-//    private int currentAddressId;
+    @ManyToOne
+    @JoinColumn(name = "c_fk_current_address_id")
+    private Address currentAddress;
 
     public Teammate() {}
 
@@ -110,15 +107,6 @@ public class Teammate implements Serializable {
         this.sex = sex;
     }
 
-//
-//    public int getSexId() {
-//        return sexId;
-//    }
-//
-//    public void setSexId(int sexId) {
-//        this.sexId = sexId;
-//    }
-
     public String getVkProfile() {
         return vkProfile;
     }
@@ -143,6 +131,7 @@ public class Teammate implements Serializable {
         this.passport = passport;
     }
 
+
 //    public int getOccupationId() {
 //        return occupationId;
 //    }
@@ -150,14 +139,14 @@ public class Teammate implements Serializable {
 //    public void setOccupationId(int occupationId) {
 //        this.occupationId = occupationId;
 //    }
-//
-//    public int getCurrentAddressId() {
-//        return currentAddressId;
-//    }
-//
-//    public void setCurrentAddressId(int currentAddressId) {
-//        this.currentAddressId = currentAddressId;
-//    }
+
+    public Address getCurrentAddress() {
+        return currentAddress;
+    }
+
+    public void setCurrentAddress(Address currentAddressId) {
+        this.currentAddress = currentAddressId;
+    }
 
     @Override
     public String toString() {

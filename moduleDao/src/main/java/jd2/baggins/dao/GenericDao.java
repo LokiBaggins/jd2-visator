@@ -61,7 +61,7 @@ public class GenericDao<T extends Serializable>
     public void update(T t) throws DaoException {
         try (Session session = HibernateUtil.getSessionFactory().openSession() ) {
             session.beginTransaction();
-            session.update(t);
+            session.saveOrUpdate(t);
             session.flush();
             session.getTransaction().commit();
         } catch (HibernateException e) {
