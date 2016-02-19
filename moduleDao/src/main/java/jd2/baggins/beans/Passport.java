@@ -23,33 +23,32 @@ public class Passport implements Serializable {
     private String lastNameLatin;
 
     @Column(name = "c_series", length = 2)
-    String series;
+    private String series;
 
     @Column(name = "c_number", length = 7)
-    int number;
+    private int number;
 
     @Column(name = "c_issue_date")
-    Date issueDate;
+    private Date issueDate;
 
     @Column(name = "c_expiry_date")
-    Date experyDate;
+    private Date experyDate;
 
     @Column(name = "c_issuing_org")
-    String issuingOrganization;
+    private String issuingOrganization;
 
     @Column(name = "c_issuing_org_inner")
-    String issuingOrganizationInner;
+    private String issuingOrganizationInner;
 
     @Column(name = "c_fingers")
-    boolean fingersTaken;
+    private boolean fingersTaken;
 
     @Column(name = "c_citizenship")
-    String citizenship;
+    private String citizenship;
 
-//    @Column(name = "c_registration_address")
-//    String registryAddress;
-    @OneToOne(mappedBy = "passport")
-    Address registryAddress;
+    @ManyToOne
+    @JoinColumn(name = "c_fk_registr_address_id")
+    private Address registryAddress;
 
     @OneToOne()
     @PrimaryKeyJoinColumn
@@ -142,14 +141,6 @@ public class Passport implements Serializable {
     public void setRegistryAddress(Address registryAddress) {
         this.registryAddress = registryAddress;
     }
-
-    //    public String getRegistryAddress() {
-//        return registryAddress;
-//    }
-//
-//    public void setRegistryAddress(String registryAddress) {
-//        this.registryAddress = registryAddress;
-//    }
 
     public boolean isFingersTaken() {
         return fingersTaken;

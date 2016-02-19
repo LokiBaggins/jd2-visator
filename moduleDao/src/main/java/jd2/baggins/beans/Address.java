@@ -2,46 +2,51 @@ package jd2.baggins.beans;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name = "t_addresses")
 public class Address implements Serializable {
-//    `c_ID` int(5) NOT NULL AUTO_INCREMENT,
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="c_ID")
-    int id;
-//    `c_country` varchar(50) DEFAULT NULL,
-    @Column(name = "c_country")
-    String countryName;
-//    `c_city` varchar(50) DEFAULT NULL,
-    @Column(name = "c_city")
-    String cityName;
-//    `c_building` varchar(4) DEFAULT NULL,
-    @Column(name = "c_building", length = 4)
-    String buildingNum;
-//    `c_street_name` varchar(50) DEFAULT NULL,
-    @Column(name = "c_street_name")
-    String streetName;
-//    `c_block` varchar(3) DEFAULT NULL,
-    @Column(name = "c_block", length = 3)
-    String buildingBlock;
-//    `c_flat` varchar(5) DEFAULT NULL,
-    @Column(name = "c_flat", length = 5)
-    String flatNum;
-//    `c_zip_code` varchar(10) DEFAULT NULL,
-    @Column(name = "c_zip_code", length = 10)
-    String zipCode;
-//    `c_city_phone` varchar(10) DEFAULT NULL,
-    @Column(name = "c_city_phone", length = 5)
-    String cityPhone;
-//    `c_fk_street_type` int(2) DEFAULT NULL,
-    @Column(name = "c_fk_street_type", length = 2)
-    int streetTypeId;
+    private int id;
 
-    @OneToOne
+    @Column(name = "c_country")
+    private String countryName;
+
+    @Column(name = "c_city")
+    private String cityName;
+
+    @Column(name = "c_building", length = 4)
+    private String buildingNum;
+
+    @Column(name = "c_street_name")
+    private String streetName;
+
+    @Column(name = "c_block", length = 3)
+    private String buildingBlock;
+
+    @Column(name = "c_flat", length = 5)
+    private String flatNum;
+
+    @Column(name = "c_zip_code", length = 10)
+    private String zipCode;
+
+    @Column(name = "c_city_phone", length = 5)
+    private String cityPhone;
+
+    @Column(name = "c_fk_street_type")
+    private int streetTypeId;
+
+    @OneToMany(mappedBy = "registryAddress")
     @PrimaryKeyJoinColumn
-    Passport passport;
+    private Set<Passport> passports;
+
+    @OneToMany(mappedBy = "currentAddress")
+    @PrimaryKeyJoinColumn
+    private Set<Teammate> teammates;
 
     public Address() {
     }
@@ -116,6 +121,22 @@ public class Address implements Serializable {
 
     public void setCountryName(String countryName) {
         this.countryName = countryName;
+    }
+
+    public Set<Passport> getPassports() {
+        return passports;
+    }
+
+    public void setPassports(Set<Passport> passports) {
+        this.passports = passports;
+    }
+
+    public Set<Teammate> getTeammates() {
+        return teammates;
+    }
+
+    public void setTeammates(Set<Teammate> teammates) {
+        this.teammates = teammates;
     }
 
     @Override
