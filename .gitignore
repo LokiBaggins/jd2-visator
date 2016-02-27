@@ -1,0 +1,14 @@
+target/
+.idea/
+*.md
+moduleDAO/target/
+moduleFront/target/
+moduleLogic/target/
+.idea/compiler.xml
+.idea/libraries/Maven__log4j_log4j_1_2_17.xml
+.idea/libraries/Maven__org_hibernate_hibernate_entitymanager_5_0_7_Final.xml
+.idea/libraries/Maven__org_slf4j_slf4j_api_1_5_6.xml
+.idea/libraries/Maven__org_slf4j_slf4j_log4j12_1_5_6.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml

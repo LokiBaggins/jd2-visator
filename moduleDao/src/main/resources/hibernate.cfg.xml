@@ -23,9 +23,6 @@
         <mapping class="jd2.baggins.beans.Teammate" />
         <mapping class="jd2.baggins.beans.Sex" />
         <mapping class="jd2.baggins.beans.Address" />
-        <mapping class="jd2.baggins.beans.Occupation" />
-        <mapping class="jd2.baggins.beans.Employer" />
-        <mapping class="jd2.baggins.beans.StreetType" />
 
 
     </session-factory>
