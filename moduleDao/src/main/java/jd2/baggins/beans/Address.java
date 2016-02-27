@@ -40,13 +40,13 @@ public class Address implements Serializable {
     @Column(name = "c_fk_street_type")
     private int streetTypeId;
 
-    @OneToMany(mappedBy = "registryAddress")
-    @PrimaryKeyJoinColumn
-    private Set<Passport> passports;
+//    @OneToMany(mappedBy = "registryAddress")
+//    @PrimaryKeyJoinColumn
+//    private Set<Passport> passports;
 
-    @OneToMany(mappedBy = "currentAddress")
-    @PrimaryKeyJoinColumn
-    private Set<Teammate> teammates;
+//    @OneToMany(mappedBy = "currentAddress")
+//    @PrimaryKeyJoinColumn
+//    private Set<Teammate> teammates;
 
     public Address() {
     }
@@ -119,25 +119,25 @@ public class Address implements Serializable {
         return countryName;
     }
 
-    public void setCountryName(String countryName) {
-        this.countryName = countryName;
-    }
-
-    public Set<Passport> getPassports() {
-        return passports;
-    }
-
-    public void setPassports(Set<Passport> passports) {
-        this.passports = passports;
-    }
-
-    public Set<Teammate> getTeammates() {
-        return teammates;
-    }
-
-    public void setTeammates(Set<Teammate> teammates) {
-        this.teammates = teammates;
-    }
+//    public void setCountryName(String countryName) {
+//        this.countryName = countryName;
+//    }
+//
+//    public Set<Passport> getPassports() {
+//        return passports;
+//    }
+//
+//    public void setPassports(Set<Passport> passports) {
+//        this.passports = passports;
+//    }
+//
+//    public Set<Teammate> getTeammates() {
+//        return teammates;
+//    }
+//
+//    public void setTeammates(Set<Teammate> teammates) {
+//        this.teammates = teammates;
+//    }
 
     @Override
     public String toString() {
