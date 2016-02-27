@@ -50,7 +50,7 @@ public class Passport implements Serializable {
     @JoinColumn(name = "c_fk_registr_address_id")
     private Address registryAddress;
 
-    @OneToOne()
+    @OneToOne
     @PrimaryKeyJoinColumn
     private Teammate teammate;
 
