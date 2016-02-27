@@ -2,7 +2,6 @@ package jd2.baggins.beans;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
 
 @Entity
 @Table(name = "t_addresses")
@@ -37,26 +36,27 @@ public class Address implements Serializable {
     @Column(name = "c_city_phone", length = 5)
     private String cityPhone;
 
-    @Column(name = "c_fk_street_type")
-    private int streetTypeId;
+    @ManyToOne
+    @JoinColumn(name = "c_fk_street_type")
+    private StreetType streetType;
 
-    @OneToMany(mappedBy = "registryAddress")
-    @PrimaryKeyJoinColumn
-    private Set<Passport> passports;
+//    @OneToMany(mappedBy = "registryAddress")
+//    @PrimaryKeyJoinColumn
+//    private Set<Passport> passports;
 
-    @OneToMany(mappedBy = "currentAddress")
-    @PrimaryKeyJoinColumn
-    private Set<Teammate> teammates;
+//    @OneToMany(mappedBy = "currentAddress")
+//    @PrimaryKeyJoinColumn
+//    private Set<Teammate> teammates;
 
     public Address() {
     }
 
-    public int getStreetTypeId() {
-        return streetTypeId;
+    public int getId() {
+        return id;
     }
 
-    public void setStreetTypeId(int streetTypeId) {
-        this.streetTypeId = streetTypeId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getCityPhone() {
@@ -123,26 +123,34 @@ public class Address implements Serializable {
         this.countryName = countryName;
     }
 
-    public Set<Passport> getPassports() {
-        return passports;
+    public StreetType getStreetType() {
+        return streetType;
     }
 
-    public void setPassports(Set<Passport> passports) {
-        this.passports = passports;
+    public void setStreetType(StreetType streetType) {
+        this.streetType = streetType;
     }
 
-    public Set<Teammate> getTeammates() {
-        return teammates;
-    }
-
-    public void setTeammates(Set<Teammate> teammates) {
-        this.teammates = teammates;
-    }
+//    public Set<Passport> getPassports() {
+//        return passports;
+//    }
+//
+//    public void setPassports(Set<Passport> passports) {
+//        this.passports = passports;
+//    }
+//
+//    public Set<Teammate> getTeammates() {
+//        return teammates;
+//    }
+//
+//    public void setTeammates(Set<Teammate> teammates) {
+//        this.teammates = teammates;
+//    }
 
     @Override
     public String toString() {
         return "Address{" +
-                "streetTypeId=" + streetTypeId +
+                "streetType=" + streetType +
                 ", cityPhone='" + cityPhone + '\'' +
                 ", zipCode='" + zipCode + '\'' +
                 ", flatNum='" + flatNum + '\'' +

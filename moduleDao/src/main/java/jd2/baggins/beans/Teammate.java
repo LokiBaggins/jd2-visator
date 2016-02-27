@@ -42,8 +42,8 @@ public class Teammate implements Serializable {
     @OneToOne(mappedBy = "teammate", cascade = CascadeType.ALL)
     private Passport passport;
 
-//    @Column(name = "c_fk_occupation_id")
-//    private int occupationId;
+    @OneToOne(mappedBy = "teammate")
+    private Occupation occupation;
 
     @ManyToOne
     @JoinColumn(name = "c_fk_current_address_id")
@@ -132,13 +132,13 @@ public class Teammate implements Serializable {
     }
 
 
-//    public int getOccupationId() {
-//        return occupationId;
-//    }
-//
-//    public void setOccupationId(int occupationId) {
-//        this.occupationId = occupationId;
-//    }
+    public Occupation getOccupation() {
+        return occupation;
+    }
+
+    public void setOccupation(Occupation occupation) {
+        this.occupation = occupation;
+    }
 
     public Address getCurrentAddress() {
         return currentAddress;
