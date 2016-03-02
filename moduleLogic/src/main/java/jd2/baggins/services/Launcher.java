@@ -7,7 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Launcher {
 
     public static void main(String[] args) {
-        ApplicationContext appContext = new ClassPathXmlApplicationContext("spring-front-config.xml");
+        ApplicationContext appContext = new ClassPathXmlApplicationContext("logic-config.xml");
 
         TestBean tb = (TestBean) appContext.getBean("tester");
 
