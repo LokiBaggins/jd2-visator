@@ -1,4 +1,4 @@
-package jd2.baggins;
+package jd2.baggins.controllers;
 
 import jd2.baggins.beans.Teammate;
 import jd2.baggins.services.TeammateService;
