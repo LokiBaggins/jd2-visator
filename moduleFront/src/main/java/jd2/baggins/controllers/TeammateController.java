@@ -23,7 +23,7 @@ public class TeammateController extends HttpServlet {
         List<Teammate> tmList = tmService.getAll();
         req.setAttribute("teamList", tmList);
         req.setAttribute("teammate", tmService.getById(tmList.get(0).getId()));
-        req.getRequestDispatcher("pages/main.jsp").forward(req, resp);
+        req.getRequestDispatcher("jsp/main.jsp").forward(req, resp);
     }
 
     @Override

@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/main2")
+@RequestMapping("/spring")
 public class SpringController {
 
-    @RequestMapping(name = "", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public String resolveTeamList(ModelMap model) {
         model.addAttribute("msg", "Прывітанне са Спрынговага кантроллера! ;)");
         return "main3";
